@@ -30,7 +30,7 @@ SUID（Set User ID）是一种权限位，用于在执行文件时暂时将进�
 <p>当然john还有很多用法,比如破解受密码保护的Zip压缩文件，我不一一记录; 可以参考 <a target="_blank" rel="noopener" href="https://openwall.info/wiki/john">官方Wiki</a></p>
 <p>再docker中<code>su username</code>,可能会报<code>must be run from terminal</code>;解决方案：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/36944634/su-command-in-docker-returns-must-be-run-from-terminal">clink me</a></p>
 <p>用的比较多的解决方案：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &quot;import pty; pty.spawn(&#x27;/bin/bash&#x27;)&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -c &quot;import pty; pty.spawn(&#x27;/bin/bash&#x27;)&quot;</span><br></pre></td></tr></table></figure>
 
 
 
