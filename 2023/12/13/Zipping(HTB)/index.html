@@ -67,7 +67,7 @@ dirsearch1234dirsearch -u http://10"><meta name="keywords" content="Blog,博客,
 <p>将<code>/usr/bin/stock</code>文件下载到本地<code>gdb</code>调试；</p>
 <p>这里要我们输入密码，我们不知道，先输入垃圾字符</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zIxyd/image@main/ctfshow/image-20231213112547617.png"></p>
-<p>这个存在一个<code>checkAuth</code>,应该是验证密码的函数，按<code>s</code>跟进看一下这个函数再干嘛</p>
+<p>这个存在一个<code>checkAuth</code>,应该是验证密码的函数，按<code>s</code>跟进看一下这个函数在干嘛</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zIxyd/image@main/ctfshow/image-20231213112620587.png"></p>
 <p>可以看到将我们输入的字符与<code>St0ckM4nager</code>作比较；说明<code>St0ckM4nager</code>就是password</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zIxyd/image@main/ctfshow/image-20231213112652991.png"></p>
