@@ -14,7 +14,7 @@ dirsearch1234dirsearch -u http://10"><meta name="keywords" content="Blog,博客,
 
 <h3 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h3><p><img src="https://cdn.jsdelivr.net/gh/zIxyd/image@main/ctfshow/%E8%81%94%E6%83%B3%E6%88%AA%E5%9B%BE_20231213094604.png"></p>
 <p><img src="https://cdn.jsdelivr.net/gh/zIxyd/image@main/ctfshow/%E8%81%94%E6%83%B3%E6%88%AA%E5%9B%BE_20231213094521.png"></p>
-<p><img src="C:\Users\24603\AppData\Roaming\Typora\typora-user-images\image-20231213094840517.png" alt="image-20231213094840517"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zIxyd/image@main/ctfshow/image-20231213094840517.png"></p>
 <p><code>/shop</code>存在文件包含漏洞(只能包含php)，猜测源码是<code>$page.&quot;php&quot;</code>之类的</p>
 <h3 id="任意文件读取"><a href="#任意文件读取" class="headerlink" title="任意文件读取"></a>任意文件读取</h3><p><img src="https://cdn.jsdelivr.net/gh/zIxyd/image@main/ctfshow/%E8%81%94%E6%83%B3%E6%88%AA%E5%9B%BE_20231213094959.png"></p>
 <p><code>/upload.php</code>存在任意文件读取；上传单个以pdf为后缀压缩的zip文件；可以用软连接读取任意文件；</p>
@@ -66,14 +66,14 @@ dirsearch1234dirsearch -u http://10"><meta name="keywords" content="Blog,博客,
 
 <p>将<code>/usr/bin/stock</code>文件下载到本地<code>gdb</code>调试；</p>
 <p>这里要我们输入密码，我们不知道，先输入垃圾字符</p>
-<p><img src="C:\Users\24603\AppData\Roaming\Typora\typora-user-images\image-20231213112547617.png" alt="image-20231213112547617"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zIxyd/image@main/ctfshow/image-20231213112547617.png"></p>
 <p>这个存在一个<code>checkAuth</code>,应该是验证密码的函数，按<code>s</code>跟进看一下这个函数再干嘛</p>
-<p><img src="C:\Users\24603\AppData\Roaming\Typora\typora-user-images\image-20231213112620587.png" alt="image-20231213112620587"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zIxyd/image@main/ctfshow/image-20231213112620587.png"></p>
 <p>可以看到将我们输入的字符与<code>St0ckM4nager</code>作比较；说明<code>St0ckM4nager</code>就是password</p>
-<p><img src="C:\Users\24603\AppData\Roaming\Typora\typora-user-images\image-20231213112652991.png" alt="image-20231213112652991"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zIxyd/image@main/ctfshow/image-20231213112652991.png"></p>
 <p>第二次调试：输入正确的密码，看看下面会执行什么</p>
 <p>这里调用了<code>dlopen</code>函数滨崎文件名是<code>/home/rektsu/.config/libcounter.so</code></p>
-<p><img src="C:\Users\24603\AppData\Roaming\Typora\typora-user-images\image-20231213113252897.png" alt="image-20231213113252897"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zIxyd/image@main/ctfshow/image-20231213113252897.png"></p>
 <p>在C语言中，<code>dlopen</code>函数用于动态加载共享库（也称为动态链接库）并返回一个句柄，以便在运行时使用库中的函数和符号。</p>
 <p>一下就想到<code>LD-PRELOAD</code>劫持<code>so</code>文件到达提权的目的。<code>ls -l /home/rektsu/.config/libcounter.so </code>并没有这个文件。需要我们再本地制作恶意的动态链接库；</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> _init() &#123; </span><br><span class="line">        system(<span class="string">&quot;/bin/bash&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
